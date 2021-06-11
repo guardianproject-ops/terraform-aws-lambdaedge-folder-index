@@ -1,0 +1,56 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: terraform-aws-lambdaedge-folder-index
+
+# License of this project
+license: "APGL3"
+
+# Canonical GitLab repo
+gitlab_repo: guardianproject-ops/terraform-aws-lambdaedge-folder-index
+
+# Badges to display
+badges: []
+
+# Short description of this project
+description: |-
+
+  This is a terraform module that deploys a lambda@edge that rewrites
+  origin-requests and routes them to different origins depending on the domain
+  specified in the path.
+
+  For example if the lambda is configured with an origin domains list of
+  foobar.com and www.example.org, then requests the following requests would be
+  rewritten
+
+  * `/foobar.com/hello/there` -> `/hello/there` (routed to foobar.com origin)
+  * `/www.example.org/site/feed.xml` -> `/site/feed.xml` (routed to www.example.org origin)
+  * `/somethingelse.com/page` -> 400 invalid origin returned
+
+
+# How to use this project
+#
+usage: |-
+
+  ```hcl
+  module "lambdaedge_folder_index" {
+    source = "git::https://gitlab.com/guardianproject-ops/terraform-aws-lambdaedge-folder-index?ref=main"
+    context = module.this.context
+  }
+  ```
+
+related: []
+
+include:
+  - "docs/terraform.md"
+
+funded_by_cdr: false
+# Contributors to this project
+contributors:
+  - name: "Abel Luck"
+    gitlab: "abelxluck"
+    gravatar: 0f605397e0ead93a68e1be26dc26481a
